@@ -1,9 +1,15 @@
 def main():
 
-    List = [23, 12, 45, 21, 1]
+    List = [23, 12, 45, 21, 1, 2]
 
     Inserted_list = insertion(List)
     print(Inserted_list)
+
+    Selected_list = selection(List)
+    print(Selected_list)
+
+    Merged_list = mergesort(List)
+    print(Merged_list)
 
 def insertion(List):
 
@@ -25,6 +31,84 @@ def insertion(List):
         i = i + 1
 
     return list
+
+
+def selection(List):
+
+    list = List
+
+    i = 0
+
+    while i < len(list) - 1:
+
+        minIndex = i
+        j = i + 1
+
+        while j < len(list):
+
+            if list[j] < list[minIndex]:
+
+                minIndex = j
+
+            j += 1
+
+        if minIndex != i:
+
+            swap = list[i]
+            list[i] = list[minIndex]
+            list[minIndex] = swap
+
+        i += 1
+    return list
+
+
+def mergesort(List):
+
+    list = List
+
+    if len(list) == 1:
+
+        return list
+
+    left = list[:len(list)//2]
+    right = list[len(list)//2:]
+
+
+
+    left = mergesort(left)
+    right = mergesort(right)
+    return merge(left, right)
+
+
+def merge(left_list, right_list):
+
+    new_list = []
+
+    while len(left_list) > 0 and len(right_list) > 0:
+
+        if left_list[0] > right_list[0]:
+
+            new_list.append(right_list[0])
+            right_list = right_list[1:]
+
+        else:
+
+            new_list.append((left_list[0]))
+            left_list = left_list[1: ]
+
+    while len(left_list) > 0:
+
+        new_list.append(left_list[0])
+        left_list = left_list[1:]
+
+    while len(right_list) > 0:
+
+        new_list.append(right_list[0])
+        right_list = right_list[1:]
+
+    return new_list
+
+
 
 if __name__ == "__main__":
     main()
