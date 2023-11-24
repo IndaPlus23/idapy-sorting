@@ -1,6 +1,6 @@
 def main():
 
-    List = [23, 12, 45, 21, 1, 2]
+    List = [23, 12, 45, 21, 1, 2, 39]
 
     Inserted_list = insertion(List)
     print(Inserted_list)
@@ -10,6 +10,10 @@ def main():
 
     Merged_list = mergesort(List)
     print(Merged_list)
+
+    Bubble_list = bubble_sort(List)
+    print(Bubble_list)
+
 
 def insertion(List):
 
@@ -109,6 +113,20 @@ def merge(left_list, right_list):
     return new_list
 
 
+def bubble_sort(List):
+
+    list = List
+    n = len(list)
+
+    # Traverse through all elements in the list
+    for i in range(n):
+        # Last i elements are already in place, so we don't need to check them
+        for j in range(0, n-i-1):
+            # Swap if the element found is greater than the next element
+            if list[j] > list[j+1]:
+                list[j], list[j+1] = list[j+1], list[j]
+
+    return list
 
 if __name__ == "__main__":
     main()
